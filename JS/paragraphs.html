@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+
+
+
+
+    <script type="text/javascript">
+
+       function createNewChild() {
+           var list = document.getElementById("list"); //записываем в массив list все элементы, которые внутри тега с id list
+          // alert(list[0].innerHTML);
+           // создание элемента p
+           var item = document.createElement("p");
+           item.innerHTML = "NEW ITEM";
+           // добавление созданного элемента в конце.
+           list.appendChild(item);
+           var pList = document.getElementsByTagName("p");  //записываем в переменную массив параграфов
+
+           if (pList.length===10)  //если накапливается 10 параграфов - удаляем все
+           {
+               for (var i=9; i>=0; i--)
+                   list.removeChild(pList[i]);
+           }
+       }
+            </script>
+</head>
+<body>
+<ul id="list"></ul>
+
+
+<input type="button" onclick="createNewChild()" style="width: 210px;" value="Create new element" /><br />
+</body>
+</html>

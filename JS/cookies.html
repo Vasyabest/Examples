@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Использование cookies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script>
+        //скрипт для сохранения в куках выбранных параметров на странице
+        window.addEventListener("load", function () {
+
+            var savedColor = findCookieValue("page-color");
+            if (savedColor) {
+                document.body.style.backgroundColor = savedColor;
+            }
+
+            var savedFont = findCookieValue("size-page");
+            if (savedFont) {
+                document.body.style.fontSize = savedFont+"pt";
+            }
+
+
+
+            document.getElementById("saveButton").addEventListener("click", function () {
+                var selectedColor = getCheckedRadioId("color")
+
+                document.cookie = "page-color=" + encodeURIComponent(selectedColor) + ";max-age=" + (60 * 60);
+                document.body.style.backgroundColor = selectedColor;
+                document.cookie = "size-page=" + document.getElementById("size").value + ";max-age=" + (60 * 60);
+
+                document.body.style.fontSize = document.getElementById("size").value+"pt";
+            });
+
+            function getCheckedRadioId(name) {
+                var elements = document.getElementsByName(name);
+
+
+                for (var i = 0, len = elements.length; i < len; ++i)
+                    if (elements[i].selected)
+
+                        return elements[i].value;
+            }
+
+            function findCookieValue(cookieName) { //функция принимающая имя куки и возвращающая его значение
+                var allcookies = document.cookie;
+                var pos = allcookies.indexOf(cookieName + "=");
+
+                // Если cookie с указанным именем найден, извлечь его значения.
+                if (pos != -1) {
+                    var start = pos + cookieName.length + 1;
+                    var end = allcookies.indexOf(";", start);
+
+                    if (end == -1) end = allcookies.length;
+
+                    var value = allcookies.substring(start, end);
+                    value = decodeURIComponent(value);
+                   // alert(value); ////////////////////////////////
+                    return value;
+                }
+            }
+        });
+    </script>
+
+</head>
+<body>
+<form>
+    <select >
+        <option value="red" name="color" >Красный</option>
+        <option value="#ffd800" name="color">Оранжевый</option>
+        <option value="grey" name="color">Серый</option>
+        <option value="green" name="color" selected>Зеленый</option>
+        <option value="blue" name="color">Голубой</option>
+        <option value="aqua" name="color">Аква</option>
+        <option value="brown" name="color">Коричневый</option>
+    </select>
+    </br>
+    <input type="text"  name="size" value="12" id="size" />
+    </br>
+    <input id="saveButton" type="button" value="Сохранить" />
+</form>
+<p>Проверочный шрифт</p>
+</body>
+</html>

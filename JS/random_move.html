@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Атрибут position</title>
+    <!--Атрибуты позиционирования-->
+    <style type="text/css">
+        body {
+            height: 2000px;
+        }
+
+        div {
+
+            padding: 10px;
+            height: 100px;
+            width: 100px;
+
+        }
+
+        #div1 {
+            /* 
+            absolute - позволяет задать абсолютное позиционирование элемента относительно содержащего его элемента.
+            Такие элементы позиционируются отдельно от остальных элементов. Абсолютное позиционирование элемента происходит либо
+            относительно тела документа, либо, если он вложен в другой абсолютно позиционируемый элемент, относительно этого элемента.
+            
+            значение по умолчанию - static. Элементы со static позиционированием не могут быть перемещены с помощью свойств left и top.
+            */
+            position: absolute;
+            top: 30px;
+            left: 100px;
+            background-color: mediumpurple;
+            border: solid Red 1px;
+        }
+
+        #div2 {
+            /*
+            fixed - позволяет зафиксировать элемент относительно окна браузера. Элементы с таким позиционированием 
+            не прокручиваются с остальной частью документа, такие элементы не зависят от остальных
+            */
+            position: absolute;
+            top: 300px;
+            right: 100px;
+            background-color: springgreen;
+            border: solid Red 1px;
+        }
+
+        #div3 {
+            /*
+            relative - элемент располагается в соответствии с нормальным потоком вывода, а затем его положение смещается
+            относительно его обычного положения в потоке.
+            */
+            position: absolute;
+            top: 200px;
+            left: 40px;
+            background-color: orangered;
+            border-radius: 60px;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        window.onload = setInterval(func, 1000);
+         function func() {
+
+                var div1=document.getElementById('div1');
+                var div2=document.getElementById('div2');
+                var div3=document.getElementById('div3');
+                // div1.style.backgroundColor="red";
+                var a=Math.floor(Math.random()*1500+1);//generation of number for left
+                var b=Math.floor(Math.random()*800+1);//generation of number for top
+                var c=Math.floor(Math.random()*1500+1);//generation of number for left
+                var d=Math.floor(Math.random()*800+1);//generation of number for top
+                var e=Math.floor(Math.random()*1500+1);//generation of number for left
+                var f=Math.floor(Math.random()*800+1);//generation of number for top
+                div1.style.left=a+"px";
+                div1.style.top=b+"px";
+                div2.style.left=c+"px";
+                div2.style.top=d+"px";
+                div3.style.left=e+"px";
+                div3.style.top=f+"px";
+
+
+        };
+    </script>
+
+</head>
+<body>
+<div id="div1">
+    1
+</div>
+<div id="div2">
+    2
+</div>
+
+    <div id="div3">
+        3
+    </div>
+
+
+</body>
+</html>

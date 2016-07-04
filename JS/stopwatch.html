@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>setInterval and clearInterval</title>
+    <script>
+        window.onload = function () {
+            var counter = 0;
+            var intervalHandler;
+            var tim2;
+            var hour;
+            var min;
+            var sec;
+            var a;
+
+            function count(){
+                get("output").innerHTML = tim2;
+                counter++;
+                hour=Math.floor(counter/3600);
+                min=(Math.floor(counter/60))%60;
+                sec=counter%60;
+                tim2=hour+':'+min+':'+sec;
+
+
+            }
+
+            get("startButton").onclick = function () {
+               if (counter===0||(a===1))
+                intervalHandler = setInterval(count, 5);
+               // else return 0;
+                a=0;
+            }
+
+            get("stopButton").onclick = function () {
+                // останавливаем таймер, по которому вызывается функция count
+                clearInterval(intervalHandler);
+                a=1;
+
+            }
+
+            get("resetButton").onclick = function () {
+                clearInterval(intervalHandler);
+                get("output").innerHTML = 0;
+                counter=0;
+                a=1;
+            }
+
+
+
+
+        }
+        // пользовательская функция для получения элементов страницы по id
+        var get = function (id){
+            return document.getElementById(id);
+        }
+
+    </script>
+</head>
+<body>
+<p id="output">00:00:00</p>
+<input id="startButton" type="button" value="Start" />
+<input id="stopButton" type="button" value="Stop" />
+<input id="resetButton" type="button" value="Reset" />
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Убегающая кнопка</title>
+
+
+    <script type="text/javascript">
+        (function(){
+            window.addEventListener("load", init, false);
+
+            function init() {
+                var elem = document.getElementById("run");
+                elem.addEventListener("mouseover", function (e) {
+                    drag(this, e);
+                })
+            }
+
+            function drag(elementToDrag, event) {
+                // координаты мыши в начале перетаскивания.
+                var startX = event.clientX,
+                        startY = event.clientY;
+
+                // начальные координаты элемента, который будет перемещаться.
+                var origX = elementToDrag.offsetLeft,
+                        origY = elementToDrag.offsetTop;
+
+                // разница между координатами мыши и координатами перетаскиваемого элемента.
+                var deltaX = startX - origX,
+                        deltaY = startY - origY;
+
+                // Регистрация событий mouseup и mousemove
+                document.addEventListener("mousemove", moveHandler, true);
+               // document.addEventListener("mouseup", upHandler, true);
+
+                function moveHandler(e) {
+                    if (!e) e = window.event;
+
+                    // перемещаем элемент с учетом отступа от первоначального клика.
+                    elementToDrag.style.left = (e.clientX + deltaX+50) + "px";
+                    elementToDrag.style.top = (e.clientY + deltaY+50) + "px";
+                }
+
+               // function upHandler(e) {
+                  //  if (!e) e = window.event;
+
+                  //  document.removeEventListener("mouseup", upHandler, true);
+                //    document.removeEventListener("mousemove", moveHandler, true);
+              //  }
+            }
+        })()
+    </script>
+
+</head>
+<body>
+
+
+<input type="button" id="run" value="Получи скидку тут" style="position: absolute; left: 100px; top: 100px; height: 50px; width: 150px; background-color: Green;">
+
+
+
+
+
+
+
+
+</body>
+</html>
