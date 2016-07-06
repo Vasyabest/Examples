@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script>
+  $(function() {
+      $("button").on("click", function () {
+          $.getJSON("http://ip-api.com/json/" + $("input").val(), function (data) {
+              if (data["status"] != "fail") {
+                  console.log(data["countryCode"]);
+                  var country_code = data["countryCode"].toLowerCase();
+                  $("img").attr("src", "http://www.geonames.org/flags/x/" + country_code + ".gif");
+                  alert("Country is: " + data["country"]);
+              } else {
+                  alert("Error, wrong IP.");
+              }
+          });
+      });
+  });
+  </script>
+</head>
+<body>
+<div style="text-align:center">
+  IP: <input type="text"> <button> What country</button>
+    <div><img src=""> </div>
+</div>
+</body>
+</html>
